@@ -32,9 +32,15 @@ jobs:
                 exit-code: 1
                 ignore-unfixed: true
                 severity: CRITICAL,HIGH
-
-            - name: Push Image To ECR
-              run: echo "push"    
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              with: 
+                role-to-assume:
+                aws-region: aws-region-1
+            - name: Login to Amazon ECR
+              id: login-ecr
+              uses: aws-actions/amazon-ecr-login@v2    
+            
 
         
 
